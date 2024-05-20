@@ -20,8 +20,8 @@ import math
 import numpy as np
 import PIL
 from PIL import Image, ImageDraw, ImageFile
+from webHooks.fight_hooks import fight_hook
 ImageFile.LOAD_TRUNCATED_IMAGES = True
-
 def imagedraw_textsize_c(draw, text):
     if int(PIL.__version__.split('.')[0]) < 10:
         tw, th = draw.textsize(text)
@@ -408,6 +408,7 @@ def visualize_action(im,
                             cv2.FONT_HERSHEY_PLAIN, text_scale, (0, 0, 255), 2)
 
     if video_action_score:
+        res = fight_hook.push(im,video_action_score,mot_boxes)
         cv2.putText(
             im,
             video_action_text + ': %.2f' % video_action_score,
