@@ -10,4 +10,6 @@ RUN pip install pip==21.1.1 && \
 RUN apt update && \
     apt install ffmpeg -y
 
+COPY . .
+
 CMD bash
